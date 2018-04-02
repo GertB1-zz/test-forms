@@ -1,7 +1,7 @@
 <h3>Testing Angular forms</h3>
 <div class="row">
   <div class=col-sm-1>
-    <button (click)="unitSelected(unit)" *ngFor="let unit of units">{{unit.name}}</button>
+    <button (click)="unitSelected(unit)" *ngFor="let unit of units | async">{{unit.name}}</button>
   </div>
   <div class=col-sm-11>
     <app-unit-edit [unit]="unit"></app-unit-edit>

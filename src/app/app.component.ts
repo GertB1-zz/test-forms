@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Unit } from './data-model';
+import { Observable } from 'rxjs';
+
+import { Unit } from './data.model';
 import { UnitService } from './unit.service';
 
 @Component({
@@ -9,20 +11,22 @@ import { UnitService } from './unit.service';
 })
 export class AppComponent implements OnInit {
   title = 'app';
-  units: Unit[];
+  //units: Unit[];
+  units: Observable<Unit[]>;
   unit: Unit = null;
   constructor(private unitService: UnitService) {
   }
 
   ngOnInit() {
-    this.unitService.changed.subscribe(units => {
-      this.units = units
-    });
+    // this.unitService.changed.subscribe(units => {
+    //   this.units = units
+    // });
 
-    this.unitService.getAll().then(units => {
-      this.units = units;
-      this.unit = this.units[0];
-    });
+    // this.unitService.getAll().then(units => {
+    //   this.units = units;
+    //   this.unit = this.units[0];
+    // });
+    this.units = this.unitService.data;
   }
 
   unitSelected(unit: Unit) {

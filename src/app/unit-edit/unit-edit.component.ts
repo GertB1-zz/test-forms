@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, SimpleChange } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
-import { Unit, Alarm } from '../data-model';
+import { Unit, Alarm } from '../data.model';
 import { UnitService } from '../unit.service';
 
 @Component({
@@ -27,7 +27,7 @@ export class UnitEditComponent implements OnInit {
     });
   }
 
-  ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
+  ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
     for (let propName in changes) {
       let changedProp = changes[propName];
       let to = JSON.stringify(changedProp.currentValue);
@@ -42,10 +42,12 @@ export class UnitEditComponent implements OnInit {
   }
 
   rebuildForm() {
-    this.form.reset({
-      name: this.unit.name
-    });
-    this.setAlarms(this.unit.alarms);
+    if (this.unit) {
+      this.form.reset({
+        name: this.unit.name
+      });
+      this.setAlarms(this.unit.alarms);
+    }
   }
 
   setAlarms(alarms: Alarm[]) {
