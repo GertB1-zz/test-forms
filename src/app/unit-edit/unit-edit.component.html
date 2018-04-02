@@ -1,0 +1,31 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div style="margin-bottom: 1em">
+    <button type="submit" [disabled]="form.pristine" class="btn btn-success">Save</button>
+  </div>
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+        <label class="center-block">Name:
+          <input class="form-control" formControlName="name">
+        </label>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div formArrayName="alarms">
+        <div *ngFor="let alarm of alarms.controls; let i=index" [formGroupName]="i">
+          <div class="form-group">
+            <label class="center-block">Name:
+              <input class="form-control" formControlName="name">
+            </label>
+          </div>
+          <div class="form-group">
+            <label class="center-block">Description:
+              <input class="form-control" formControlName="description">
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<pre>{{ unit | json }}</pre>
