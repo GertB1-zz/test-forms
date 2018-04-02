@@ -27,6 +27,9 @@ export class AppComponent implements OnInit {
     //   this.unit = this.units[0];
     // });
     this.units = this.unitService.data;
+    this.unitService.data.subscribe(data => {
+      this.unit = data[0];
+    });
   }
 
   unitSelected(unit: Unit) {

@@ -28,16 +28,15 @@ export class UnitEditComponent implements OnInit {
   }
 
   ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
-    for (let propName in changes) {
-      let changedProp = changes[propName];
-      let to = JSON.stringify(changedProp.currentValue);
-      if (changedProp.isFirstChange()) {
-      } else {
-        if (changedProp.previousValue) {
-          this.updateData(changedProp.previousValue);
-        }
-      }
-    }
+    // for (let propName in changes) {
+    //   let changedProp = changes[propName];
+    //   if (changedProp.isFirstChange()) {
+    //   } else {
+    //     if (changedProp.previousValue) {
+    //       //this.updateData(changedProp.previousValue);
+    //     }
+    //   }
+    // }
     this.rebuildForm();
   }
 
@@ -71,13 +70,10 @@ export class UnitEditComponent implements OnInit {
   prepareSaveUnit(currentUnit: Unit): Unit {
     const formModel = this.form.value;
 
-    // deep copy of form model lairs
     const alarmsDeepCopy: Alarm[] = formModel.alarms.map(
       (unit: Unit) => Object.assign({}, unit)
     );
 
-    // return new `Hero` object containing a combination of original hero value(s)
-    // and deep copies of changed form model values
     const saveUnit: Unit = {
       id: currentUnit.id,
       name: formModel.name as string,
