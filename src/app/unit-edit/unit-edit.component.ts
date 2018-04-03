@@ -28,15 +28,6 @@ export class UnitEditComponent implements OnInit {
   }
 
   ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
-    // for (let propName in changes) {
-    //   let changedProp = changes[propName];
-    //   if (changedProp.isFirstChange()) {
-    //   } else {
-    //     if (changedProp.previousValue) {
-    //       //this.updateData(changedProp.previousValue);
-    //     }
-    //   }
-    // }
     this.rebuildForm();
   }
 
@@ -59,14 +50,11 @@ export class UnitEditComponent implements OnInit {
     return this.form.get('alarms') as FormArray;
   };
 
-  private updateData(unit: Unit) {
+  public updateData(unit: Unit) {
     let saveunit = this.prepareSaveUnit(unit);
     this.unitService.update(saveunit);
   }
 
-  onSubmit() {
-    this.updateData(this.unit);
-  }
   prepareSaveUnit(currentUnit: Unit): Unit {
     const formModel = this.form.value;
 
